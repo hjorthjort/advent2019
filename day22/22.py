@@ -6,7 +6,7 @@ with open('input.txt') as f:
 inp = [ re.compile('([-0-9]+)').split(x) for x in inp.splitlines()]
 
 
-def shuffle(instr, pos, length):
+def shuffle(instr, pos):
     typ = instr[0]
     if typ == 'deal into new stack':
         return -(pos + 1)
@@ -20,13 +20,11 @@ def shuffle(instr, pos, length):
 
 
 pos = 2019
-Y = sym.Symbol('Y')
-pos = Y
 length = 10007
 for instr in inp:
-    pos = shuffle(instr, pos, length)
+    pos = shuffle(instr, pos)
 
-print(sym.collect_const(pos % length).subs(Y, 2019))
+print(pos % length)
 
 # Part 2
 # The length is prime.
